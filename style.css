@@ -28,7 +28,7 @@ nav a:hover{
     width: 300px;
     margin: 50px auto;
     padding: 20px;
-    border: 1px solid #1a1111;
+    border: 2px solid #1a1111;
     border-radius: 5px;
 }
 .login-container label{
@@ -38,6 +38,9 @@ nav a:hover{
     text-align: center;
     margin-bottom: 10%;
 }
+.login-container a:hover{
+    color: rgb(255, 0, 0); 
+}
 .login-container input{
     width: 100%;
     padding: 10px;
@@ -46,9 +49,15 @@ nav a:hover{
     border-radius: 5px;
     box-sizing: border-box;
 }
+input:focus{
+    /* outline: none; */
+    border-color: #432371;
+    border-width: 2px;
+}
 .login-container button{
     width: 100%;
     padding: 10px;
+    margin-top: 10px;
     background-color: #432371;
     color: white;
     border: none;
@@ -77,9 +86,14 @@ nav a:hover{
     border-radius: 5px;
     box-sizing: border-box;
 }
+.registerform a:hover{
+    color: rgb(255, 0, 0); 
+}
+
 .registerform button{
     width: 100%;
     padding: 10px;
+    margin-top: 10px;
     background-color: #432371;
     color: white;
     border: none;
@@ -176,5 +190,19 @@ td{
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: bold;
+}
 
+.home{
+    width: 500px;
+    margin: 25px auto;
+    padding: 20px;
+    text-align: center;
+}
+.home p{
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+a{
+    text-decoration: none;
 }
