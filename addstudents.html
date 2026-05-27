@@ -4,25 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Add student</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
+    <nav>
         <a href="dashboard.html">Home</a>&nbsp;&nbsp;
         <a href="addstudents.html">Add students</a>&nbsp;&nbsp;
         <a href="viewstudents.html">View students</a>&nbsp;&nbsp;
         <a href="logout.html">Logout</a>
+    </nav>
+    <div class="addstudent">
+      <h2>Fill the below form to add student</h2>
+      <form action="viewstudents.html">
+        <label for="roll">Enter roll no</label>
+        <input type="text" name="roll" required />
+        <label for="name">Enter Name</label>
+        <input type="text" name="name" required />
+        <label for="branch">Enter Branch</label>
+        <input type="text" name="branch" required />
+        <label for="cgpa">Enter CGPA</label>
+        <input type="text" name="cgpa" required />
+        <button>Add student</button>
+      </form>
     </div>
-    <h3>Fill the below form to add student</h3>
-    <form action="viewstudents.html">
-      <label for="roll">Enter roll no</label>
-      <input type="text" name="roll" required /><br><br>
-      <label for="name">Enter Name</label>
-      <input type="text" name="name" required /><br><br>
-      <label for="branch">Enter Branch</label>
-      <input type="text" name="branch" required /><br><br>
-      <label for="cgpa">Enter CGPA</label>
-      <input type="text" name="cgpa" required /><br><br>
-      <button>Add student</button>
-    </form>
   </body>
 </html>
