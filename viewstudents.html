@@ -3,73 +3,247 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student details</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Student Management System</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-rows: 1fr 4fr 1fr;
+        grid-template-areas:
+          "hd hd"
+          "nv cntt"
+          "ftr ftr";
+      }
+      .header {
+        background-color: #1b2a41;
+        padding: 20px;
+        text-align: center;
+        color: white;
+        grid-area: hd;
+      }
+      .nav {
+        background-color: #333;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        grid-area: nv;
+      }
+      .nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+      }
+      .nav-list a {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      .nav-list a:hover {
+        color: red;
+        font-weight: bold;
+        /* font-size: 20px; */
+      }
+      .content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        grid-area: cntt;
+      }
+      .footer {
+        background-color: #f2f2f2;
+        padding: 10px;
+        text-align: center;
+        grid-area: ftr;
+      }
+      #edit-link {
+        background-color: green;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+
+      #delete-link {
+        background-color: red;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      .view-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* margin-top: px; */
+      }
+      .studenttable {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 80%;
+        margin-top: 5px;
+      }
+      table {
+        margin: 0 auto;
+        width: 80%;
+        border-collapse: collapse;
+      }
+
+      .view-container table,
+      th,
+      td {
+        border: 2px solid black;
+      }
+      th,
+      td {
+        padding: 10px;
+        text-align: center;
+      }
+      th {
+        background-color: #432371;
+        color: white;
+        font-size: 20px;
+      }
+      td {
+        font-size: 18px;
+      }
+      .view-container td a {
+        text-decoration: none;
+        color: #ffffff;
+      }
+    </style>
   </head>
   <body>
-    <nav>
-      <a href="dashboard.html">Home</a>&nbsp;&nbsp;
-      <a href="addstudents.html">Add students</a>&nbsp;&nbsp;
-      <a href="viewstudents.html">View students</a>&nbsp;&nbsp;
-      <a href="logout.html">Logout</a>
-    </nav>
     <div class="container">
-      <h1>Student details</h1>
-      <table class="studenttable">
-        <tr>
-          <th>Roll No</th>
-          <th>Name</th>
-          <th>Branch</th>
-          <th>CGPA</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Manideep</td>
-          <td>DS</td>
-          <td>8.5</td>
-          <td><button id="edit-link"><a href="editstudents.html" >Edit</a></button></td>
-          &nbsp;&nbsp;
-          <td><button id="delete-link" onclick="alert('Student deleted successfully')">Delete</button></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Manish</td>
-          <td>DS</td>
-          <td>9.5</td>
-          <td><button id="edit-link"><a href="editstudents.html" >Edit</a></button></td>
-          &nbsp;&nbsp;
-          <td><button id="delete-link" onclick="alert('Student deleted successfully')">Delete</button></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Rahul</td>
-          <td>CS</td>
-          <td>10</td>
-          <td><button id="edit-link"><a href="editstudents.html" >Edit</a></button></td>
-          &nbsp;&nbsp;
-          <td><button id="delete-link" onclick="alert('Student deleted successfully')">Delete</button></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Avinash</td>
-          <td>IT</td>
-          <td>9.2</td>
-          <td><button id="edit-link"><a href="editstudents.html" >Edit</a></button></td>
-          &nbsp;&nbsp;
-          <td><button id="delete-link" onclick="alert('Student deleted successfully')">Delete</button></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Rohan</td>
-          <td>DS</td>
-          <td>9.7</td>
-          <td><button id="edit-link"><a href="editstudents.html" >Edit</a></button></td>
-          &nbsp;&nbsp;
-          <td><button id="delete-link" onclick="alert('Student deleted successfully')">Delete</button></td>
-        </tr>
-      </table>
+      <div class="header">
+        <h1>Student Management System</h1>
+      </div>
+      <div class="nav">
+        <ul class="nav-list">
+          <li><a href="grid.html">Home</a></li>
+          <li><a href="addstudents.html">Add Student</a></li>
+          <li><a href="viewstudents.html">View Students</a></li>
+          <li><a href="logout.html">Logout</a></li>
+        </ul>
+      </div>
+      <div class="view-container">
+        <h1>Student details</h1>
+        <table class="studenttable">
+          <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>CGPA</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Manideep</td>
+            <td>DS</td>
+            <td>8.5</td>
+            <td>
+              <button id="edit-link">
+                <a href="editstudents.html">Edit</a>
+              </button>
+            </td>
+            &nbsp;&nbsp;
+            <td>
+              <button
+                id="delete-link"
+                onclick="alert('Student deleted successfully')"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Manish</td>
+            <td>DS</td>
+            <td>9.5</td>
+            <td>
+              <button id="edit-link">
+                <a href="editstudents.html">Edit</a>
+              </button>
+            </td>
+            &nbsp;&nbsp;
+            <td>
+              <button
+                id="delete-link"
+                onclick="alert('Student deleted successfully')"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Rahul</td>
+            <td>CS</td>
+            <td>10</td>
+            <td>
+              <button id="edit-link">
+                <a href="editstudents.html">Edit</a>
+              </button>
+            </td>
+            &nbsp;&nbsp;
+            <td>
+              <button
+                id="delete-link"
+                onclick="alert('Student deleted successfully')"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Avinash</td>
+            <td>IT</td>
+            <td>9.2</td>
+            <td>
+              <button id="edit-link">
+                <a href="editstudents.html">Edit</a>
+              </button>
+            </td>
+            &nbsp;&nbsp;
+            <td>
+              <button
+                id="delete-link"
+                onclick="alert('Student deleted successfully')"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Rohan</td>
+            <td>DS</td>
+            <td>9.7</td>
+            <td>
+              <button id="edit-link">
+                <a href="editstudents.html">Edit</a>
+              </button>
+            </td>
+            &nbsp;&nbsp;
+            <td>
+              <button
+                id="delete-link"
+                onclick="alert('Student deleted successfully')"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footer">
+        <p>&copy; 2026 Student Management System. All rights reserved.</p>
+      </div>
     </div>
   </body>
 </html>

@@ -3,8 +3,6 @@
     padding: 0;
 }
 
-
-
 nav{
     width: 100%;
     height: 50px;
@@ -22,8 +20,6 @@ nav a:hover{
     color: rgb(255, 0, 0)
 }
 
-
-
 .login-container{
     width: 300px;
     margin: 50px auto;
@@ -31,6 +27,11 @@ nav a:hover{
     border: 2px solid #1a1111;
     border-radius: 5px;
 }
+
+.login-container:hover{
+    box-shadow: 0 0 10px rgba(67, 35, 113, 0.5);
+}
+
 .login-container label{
     font-size: 20px;
 }
@@ -112,11 +113,11 @@ input:focus{
 }
 
 .addstudent{
-    width: 350px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
     margin: 50px auto;
     padding: 20px;
-    border: 2px solid #1a1111;
-    border-radius: 5px;
 }
 .addstudent label{
     font-size: 20px;
@@ -149,48 +150,9 @@ input:focus{
     margin-top:10px;
     margin-bottom: 20px;
 }
-table{
-    margin: 0 auto;
-    width: 80%;
-    border-collapse: collapse;
-}
 
-.container table,th,td{
-    border: 2px solid black;
-}
-th,td{
-    padding: 10px;
-    text-align: center;
-}
-th{
-    background-color: #432371;
-    color: white;
-    font-size: 20px;
-}
-td{
-    font-size: 18px;
-}
-.container td a{
-    text-decoration: none;
-    color: #ffffff;
-    
-}
 
-#edit-link{
-    background-color: green;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
 
-#delete-link{
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
-}
 
 .home{
     width: 500px;
