@@ -15,17 +15,37 @@
     </nav>
     <div class="addstudent">
       <h2>Edit student details</h2>
-      <form action="viewstudents.html">
+      <form>
         <label for="roll">Roll No</label>
-        <input type="text" name="roll" value="23B81A67F0" />
+        <input type="text" id="roll" name="roll"/>
         <label for="name">Name</label>
-        <input type="text" name="name" value="Manideep" />
+        <input type="text" id="name" name="name" value="Manideep" />
         <label for="branch">Branch</label>
-        <input type="text" name="branch" value="DS" />
+        <input type="text" id="branch" name="branch" value="DS" />
         <label for="cgpa">CGPA</label>
-        <input type="number" name="cgpa" value="8.49" />
-        <button>Save changes</button>
+        <input type="number" id="cgpa" name="cgpa" value="8.49" />
+        <button type="button" onclick="saveChanges()">Save changes</button>
       </form>
     </div>
+    <script>
+      let rollno = localStorage.getItem("editRoll");
+      let students = JSON.parse(localStorage.getItem("students"));
+      let student = students.find((student) => student.roll === rollno);
+      let roll = document.getElementById("roll");
+      let name = document.getElementById("name");
+      let branch = document.getElementById("branch");
+      let cgpa = document.getElementById("cgpa");
+      roll.value = student.roll;
+      name.value = student.name;
+      branch.value = student.branch;
+      cgpa.value = student.cgpa;
+      function saveChanges(){
+        student.name = document.getElementById("name").value;
+        student.branch = document.getElementById("branch").value;
+        student.cgpa = document.getElementById("cgpa").value;
+        localStorage.setItem("students", JSON.stringify(students));
+        location.href='viewstudents.html';
+      }
+    </script>
   </body>
 </html>

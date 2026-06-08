@@ -88,6 +88,26 @@
         cursor: pointer;
       }
     </style>
+    <script>
+      function saveStudent(){
+        event.preventDefault();
+        let rollno = document.getElementById('roll').value;
+        let name = document.getElementById('name').value;
+        let branch = document.getElementById('branch').value;
+        let cgpa = document.getElementById('cgpa').value;
+        const student = {
+          roll : rollno,
+          name : name,
+          branch : branch,
+          cgpa : cgpa
+        };
+
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        students.push(student);
+        localStorage.setItem("students",JSON.stringify(students));
+        location.href='viewstudents.html';
+      }
+    </script>
   </head>
   <body>
     <div class="container">
@@ -105,16 +125,16 @@
       <div class="content">
         <div class="addstudent">
           <h2>Fill the below form to add student</h2>
-          <form action="viewstudents.html">
+          <form>
             <label for="roll">Enter roll no</label>
-            <input type="text" name="roll" required />
+            <input type="text" id="roll" name="roll" required />
             <label for="name">Enter Name</label>
-            <input type="text" name="name" required />
+            <input type="text" id="name" name="name" required />
             <label for="branch">Enter Branch</label>
-            <input type="text" name="branch" required />
+            <input type="text" id="branch" name="branch" required />
             <label for="cgpa">Enter CGPA</label>
-            <input type="text" name="cgpa" required />
-            <button>Add student</button>
+            <input type="text" id="cgpa" name="cgpa" required />
+            <button type="button" onclick="saveStudent()">Add student</button>
           </form>
         </div>
       </div>

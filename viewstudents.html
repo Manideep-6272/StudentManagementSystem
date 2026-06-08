@@ -131,119 +131,48 @@
       <div class="view-container">
         <h1>Student details</h1>
         <table class="studenttable">
-          <tr>
-            <th>Roll No</th>
-            <th>Name</th>
-            <th>Branch</th>
-            <th>CGPA</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Manideep</td>
-            <td>DS</td>
-            <td>8.5</td>
-            <td>
-              <button id="edit-link">
-                <a href="editstudents.html">Edit</a>
-              </button>
-            </td>
-            &nbsp;&nbsp;
-            <td>
-              <button
-                id="delete-link"
-                onclick="alert('Student deleted successfully')"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Manish</td>
-            <td>DS</td>
-            <td>9.5</td>
-            <td>
-              <button id="edit-link">
-                <a href="editstudents.html">Edit</a>
-              </button>
-            </td>
-            &nbsp;&nbsp;
-            <td>
-              <button
-                id="delete-link"
-                onclick="alert('Student deleted successfully')"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Rahul</td>
-            <td>CS</td>
-            <td>10</td>
-            <td>
-              <button id="edit-link">
-                <a href="editstudents.html">Edit</a>
-              </button>
-            </td>
-            &nbsp;&nbsp;
-            <td>
-              <button
-                id="delete-link"
-                onclick="alert('Student deleted successfully')"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>Avinash</td>
-            <td>IT</td>
-            <td>9.2</td>
-            <td>
-              <button id="edit-link">
-                <a href="editstudents.html">Edit</a>
-              </button>
-            </td>
-            &nbsp;&nbsp;
-            <td>
-              <button
-                id="delete-link"
-                onclick="alert('Student deleted successfully')"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Rohan</td>
-            <td>DS</td>
-            <td>9.7</td>
-            <td>
-              <button id="edit-link">
-                <a href="editstudents.html">Edit</a>
-              </button>
-            </td>
-            &nbsp;&nbsp;
-            <td>
-              <button
-                id="delete-link"
-                onclick="alert('Student deleted successfully')"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Roll No</th>
+              <th>Name</th>
+              <th>Branch</th>
+              <th>CGPA</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="tbleBody"></tbody>
         </table>
       </div>
       <div class="footer">
         <p>&copy; 2026 Student Management System. All rights reserved.</p>
       </div>
     </div>
+    <script>
+      const students = JSON.parse(localStorage.getItem("students"));
+      let tableBdy = document.getElementById("tbleBody");
+      for (let student of students) {
+        let row = document.createElement("tr");
+        row.innerHTML = `<td>${student.roll}</td>
+                          <td>${student.name}</td>
+                          <td>${student.branch}</td>
+                          <td>${student.cgpa}</td>
+                          <td><button id="edit-link" onclick="editStudent('${student.roll}')">Edit</button></td>
+                          <td><button id="delete-link" onclick="deleteStudent('${student.roll}')">Delete</button>
+                          </td>`;
+        tableBdy.appendChild(row);
+      }
+      function deleteStudent(roll) {
+        let students = JSON.parse(localStorage.getItem("students"));
+        students = students.filter((student) => student.roll !== roll);
+        localStorage.setItem("students", JSON.stringify(students));
+        alert("Student with roll no " + roll + " deleted successfully!");
+        location.reload();
+      }
+      function editStudent(roll){
+        localStorage.setItem("editRoll",roll);
+        location.href='editstudents.html';
+      }
+    </script>
   </body>
 </html>

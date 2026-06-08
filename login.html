@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function validateUser(){
+            event.preventDefault();
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            let user = JSON.parse(localStorage.getItem(username));
+            if (password !== user.password){
+                alert("password incorrect");
+                return;
+            }
+            location.href='dashboard.html';
+        }
+    </script>
 </head>
 <body>
     <nav>
@@ -14,13 +27,13 @@
     </nav>
     <div class="login-container">
         <h1>Login</h1>
-        <form action="grid.html">
+        <form>
             <label for="username">Enter username</label>
-            <input type="text" name="username" required>
+            <input type="text" id="username" name="userna" required>
             <label for="password">Enter password</label>
-            <input type="password" name="password" required>
+            <input type="password" id="password" name="passwo" required>
             <label>Don't have an account? <a href="register.html">Register</a></label>
-            <button>login</button>
+            <button type="button" onclick="validateUser()">login</button>
         </form>
     </div>
 </body>
