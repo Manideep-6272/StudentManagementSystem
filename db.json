@@ -1,0 +1,41 @@
+{
+  "users": [
+    {
+      "username": "cvr",
+      "email": "cvr@gmail.com",
+      "password": "123",
+      "id": "9iLcIR0cSO0"
+    }
+  ],
+  "students": [
+    {
+      "roll": "2",
+      "name": "Manish Uppala",
+      "branch": "DS",
+      "cgpa": "8.5",
+      "id": "DpigJJIQWPA"
+    },
+    {
+      "roll": "4",
+      "name": "Mitul",
+      "branch": "CS",
+      "cgpa": "8.6",
+      "id": "Chs5VABr0_k"
+    },
+    {
+      "roll": "1",
+      "name": "Mothukuri Manideep",
+      "branch": "DS",
+      "cgpa": "10",
+      "id": "GXDoJ7JyS7s"
+    },
+    {
+      "roll": "3",
+      "name": "Mohan",
+      "branch": "DS",
+      "cgpa": "10",
+      "id": "eGT0D1Tgsws"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

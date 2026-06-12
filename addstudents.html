@@ -41,7 +41,6 @@
       .nav-list a:hover {
         color: red;
         font-weight: bold;
-        /* font-size: 20px; */
       }
       .content {
         padding: 20px;
@@ -89,7 +88,7 @@
       }
     </style>
     <script>
-      function saveStudent(){
+      async function saveStudent(){
         event.preventDefault();
         let rollno = document.getElementById('roll').value;
         let name = document.getElementById('name').value;
@@ -101,10 +100,8 @@
           branch : branch,
           cgpa : cgpa
         };
-
-        let students = JSON.parse(localStorage.getItem('students')) || [];
-        students.push(student);
-        localStorage.setItem("students",JSON.stringify(students));
+        let stdnt = await fetch("http://localhost:3000/students",{method:"POST",body:JSON.stringify(student)});
+        // stdnt.then(res=>console.log(res));
         location.href='viewstudents.html';
       }
     </script>
@@ -116,7 +113,7 @@
       </div>
       <div class="nav">
         <ul class="nav-list">
-          <li><a href="grid.html">Home</a></li>
+          <li><a href="dashboard.html">Home</a></li>
           <li><a href="addstudents.html">Add Student</a></li>
           <li><a href="viewstudents.html">View Students</a></li>
           <li><a href="logout.html">Logout</a></li>

@@ -28,24 +28,32 @@
       </form>
     </div>
     <script>
-      let rollno = localStorage.getItem("editRoll");
-      let students = JSON.parse(localStorage.getItem("students"));
-      let student = students.find((student) => student.roll === rollno);
-      let roll = document.getElementById("roll");
-      let name = document.getElementById("name");
-      let branch = document.getElementById("branch");
-      let cgpa = document.getElementById("cgpa");
-      roll.value = student.roll;
-      name.value = student.name;
-      branch.value = student.branch;
-      cgpa.value = student.cgpa;
-      function saveChanges(){
+      let id;
+      let student;
+      async function edit(){
+        id = new URLSearchParams(window.location.search).get("id");
+        let stdntDetails = await fetch(`http://localhost:3000/students/${id}`);
+        student = await stdntDetails.json();
+        let roll = document.getElementById("roll");
+        let name = document.getElementById("name");
+        let branch = document.getElementById("branch");
+        let cgpa = document.getElementById("cgpa");
+        roll.value = student.roll;
+        name.value = student.name;
+        branch.value = student.branch;
+        cgpa.value = student.cgpa;
+      }
+      async function saveChanges(){
         student.name = document.getElementById("name").value;
         student.branch = document.getElementById("branch").value;
         student.cgpa = document.getElementById("cgpa").value;
-        localStorage.setItem("students", JSON.stringify(students));
+        let updatedStdnt = await fetch(`http://localhost:3000/students/${id}`,{
+          method:"PATCH",
+          body:JSON.stringify(student)
+        })
         location.href='viewstudents.html';
       }
+      edit();
     </script>
   </body>
 </html>

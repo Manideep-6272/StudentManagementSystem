@@ -122,7 +122,7 @@
       </div>
       <div class="nav">
         <ul class="nav-list">
-          <li><a href="grid.html">Home</a></li>
+          <li><a href="dashboard.html">Home</a></li>
           <li><a href="addstudents.html">Add Student</a></li>
           <li><a href="viewstudents.html">View Students</a></li>
           <li><a href="logout.html">Logout</a></li>
@@ -149,30 +149,34 @@
       </div>
     </div>
     <script>
-      const students = JSON.parse(localStorage.getItem("students"));
-      let tableBdy = document.getElementById("tbleBody");
-      for (let student of students) {
-        let row = document.createElement("tr");
-        row.innerHTML = `<td>${student.roll}</td>
-                          <td>${student.name}</td>
-                          <td>${student.branch}</td>
-                          <td>${student.cgpa}</td>
-                          <td><button id="edit-link" onclick="editStudent('${student.roll}')">Edit</button></td>
-                          <td><button id="delete-link" onclick="deleteStudent('${student.roll}')">Delete</button>
-                          </td>`;
-        tableBdy.appendChild(row);
+      async function fetchDetails(){
+        let details = await fetch('http://localhost:3000/students');
+        let students = await details.json();
+        let tableBdy = document.getElementById("tbleBody");
+        for (let student of students) {
+          console.log(student.id);
+          let row = document.createElement("tr");
+          row.innerHTML = `<td>${student.roll}</td>
+                            <td>${student.name}</td>
+                            <td>${student.branch}</td>
+                            <td>${student.cgpa}</td>
+                            <td><button id="edit-link" onclick="editStudent('${student.id}')">Edit</button></td>
+                            <td><button id="delete-link" onclick="deleteStudent('${student.id}')">Delete</button>
+                            </td>`;
+          tableBdy.appendChild(row);
+        }
       }
-      function deleteStudent(roll) {
-        let students = JSON.parse(localStorage.getItem("students"));
-        students = students.filter((student) => student.roll !== roll);
-        localStorage.setItem("students", JSON.stringify(students));
+      async function deleteStudent(id) {
+        let stdnts = await fetch(`http://localhost:3000/students/${id}`,{
+          method:"DELETE"
+        })
         alert("Student with roll no " + roll + " deleted successfully!");
         location.reload();
       }
-      function editStudent(roll){
-        localStorage.setItem("editRoll",roll);
-        location.href='editstudents.html';
+      function editStudent(id){
+        location.href = "editstudents.html?id="+id;
       }
+      fetchDetails();
     </script>
   </body>
 </html>

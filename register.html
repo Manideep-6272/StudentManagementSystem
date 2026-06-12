@@ -1,52 +1,64 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script>
-        function validateForm(){
-            event.preventDefault();
-            let username = document.getElementById('username').value;
-            let email = document.getElementById('email').value;
-            let password = document.getElementById('password').value;
-            let confirmPwd = document.getElementById('confirmpassword').value;
-            if (password !== confirmPwd){
-                alert("Password mismatch");
-                return;
-            }
-            const user = {
-                username:username,
-                email:email,
-                password:password
-            };
-            const userStr = JSON.stringify(user);
-            localStorage.setItem(username,userStr);
-            location.href="login.html";
+      async function validateForm() {
+        event.preventDefault();
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let confirmPwd = document.getElementById("confirmpassword").value;
+        if (password !== confirmPwd) {
+          alert("Password mismatch");
+          return;
         }
+        const user = {
+          username: username,
+          email: email,
+          password: password,
+        };
+        const userStr = JSON.stringify(user);
+        let result = await fetch("http://localhost:3000/users", {
+          method: "POST",
+          body: userStr,
+        });
+        if (result.ok) {
+          location.href = "login.html";
+        } else {
+          alert("Registration failed");
+        }
+      }
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;
-        <a href="login.html">Login</a>&nbsp;&nbsp;&nbsp;
-        <a href="register.html">Register</a>
+      <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;
+      <a href="login.html">Login</a>&nbsp;&nbsp;&nbsp;
+      <a href="register.html">Register</a>
     </nav>
     <div class="registerform">
-        <h1>Register</h1>
-        <form>
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <label for="confirmpassword">Confirm password</label>
-            <input type="password" id="confirmpassword" name="confirmpassword" required>
-            <label>Already have an account? <a href="login.html">Login</a></label>
-            <button type="button" onclick="validateForm()">Register</button>
-        </form>
+      <h1>Register</h1>
+      <form onsubmit="validateForm()">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+        <label for="confirmpassword">Confirm password</label>
+        <input
+          type="password"
+          id="confirmpassword"
+          name="confirmpassword"
+          required
+        />
+        <label>Already have an account? <a href="login.html">Login</a></label>
+        <button type="submit">Register</button>
+      </form>
     </div>
-</body>
+  </body>
 </html>

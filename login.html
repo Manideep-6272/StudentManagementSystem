@@ -6,16 +6,19 @@
     <title>Login</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        function validateUser(){
+        async function validateUser(){
             event.preventDefault();
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
-            let user = JSON.parse(localStorage.getItem(username));
-            if (password !== user.password){
-                alert("password incorrect");
-                return;
+            let response = await fetch('http://localhost:3000/users');
+            let usersData = await response.json();
+            if (usersData.some(user => user.username === username && user.password === password)){
+                console.log("Login success")
+                location.href='dashboard.html';
             }
-            location.href='dashboard.html';
+            else{
+                alert("Invalid username or password");
+            }
         }
     </script>
 </head>
@@ -27,13 +30,13 @@
     </nav>
     <div class="login-container">
         <h1>Login</h1>
-        <form>
+        <form onsubmit="validateUser()">
             <label for="username">Enter username</label>
             <input type="text" id="username" name="userna" required>
             <label for="password">Enter password</label>
             <input type="password" id="password" name="passwo" required>
             <label>Don't have an account? <a href="register.html">Register</a></label>
-            <button type="button" onclick="validateUser()">login</button>
+            <button type="submit">login</button>
         </form>
     </div>
 </body>
