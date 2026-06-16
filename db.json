@@ -9,13 +9,6 @@
   ],
   "students": [
     {
-      "roll": "2",
-      "name": "Manish Uppala",
-      "branch": "DS",
-      "cgpa": "8.5",
-      "id": "DpigJJIQWPA"
-    },
-    {
       "roll": "4",
       "name": "Mitul",
       "branch": "CS",
@@ -33,8 +26,15 @@
       "roll": "3",
       "name": "Mohan",
       "branch": "DS",
-      "cgpa": "10",
+      "cgpa": "12",
       "id": "eGT0D1Tgsws"
+    },
+    {
+      "roll": "1",
+      "name": "Manideep",
+      "branch": "DS",
+      "cgpa": "9.5",
+      "id": "ocp9qlb1aOc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
