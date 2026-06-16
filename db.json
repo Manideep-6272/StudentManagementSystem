@@ -5,6 +5,16 @@
       "email": "cvr@gmail.com",
       "password": "123",
       "id": "9iLcIR0cSO0"
+    },
+    {
+      "username": "cvr11",
+      "email": "cvr@gmail.com",
+      "password": "123"
+    },
+    {
+      "username": "cvr2",
+      "email": "cvr@gmail.com",
+      "password": "123"
     }
   ],
   "students": [
@@ -35,6 +45,18 @@
       "branch": "DS",
       "cgpa": "9.5",
       "id": "ocp9qlb1aOc"
+    },
+    {
+      "roll": "10",
+      "name": "Rahul",
+      "branch": "DS",
+      "cgpa": "10"
+    },
+    {
+      "roll": "11",
+      "name": "Avinash",
+      "branch": "CS",
+      "cgpa": "8.5"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

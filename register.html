@@ -6,30 +6,40 @@
     <title>Register</title>
     <link rel="stylesheet" href="style.css" />
     <script>
-      async function validateForm() {
+      async function validateForm(event) {
         event.preventDefault();
+
         let username = document.getElementById("username").value;
         let email = document.getElementById("email").value;
         let password = document.getElementById("password").value;
         let confirmPwd = document.getElementById("confirmpassword").value;
+
         if (password !== confirmPwd) {
           alert("Password mismatch");
           return;
         }
+
         const user = {
-          username: username,
-          email: email,
-          password: password,
+          username,
+          email,
+          password,
         };
-        const userStr = JSON.stringify(user);
-        let result = await fetch("http://localhost:3000/users", {
+
+        let result = await fetch("http://localhost:4000/register", {
           method: "POST",
-          body: userStr,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
         });
+
+        let data = await result.json();
+
         if (result.ok) {
+          // alert(data.message);
           location.href = "login.html";
         } else {
-          alert("Registration failed");
+          alert(data.message);
         }
       }
     </script>
@@ -42,7 +52,7 @@
     </nav>
     <div class="registerform">
       <h1>Register</h1>
-      <form onsubmit="validateForm()">
+      <form onsubmit="validateForm(event)">
         <label for="username">Username</label>
         <input type="text" id="username" name="username" required />
         <label for="email">Email</label>

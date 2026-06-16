@@ -56,7 +56,7 @@
         text-align: center;
         grid-area: ftr;
       }
-      .addstudent{
+      .addstudent {
         display: flex;
         flex-direction: column;
         width: 300px;
@@ -65,20 +65,20 @@
         border: 2px solid #1a1111;
         border-radius: 5px;
       }
-      .addstudent form{
+      .addstudent form {
         display: flex;
         flex-direction: column;
         gap: 15px;
       }
-      .addstudent label{
+      .addstudent label {
         font-size: 20px;
       }
-      .addstudent input:focus{
+      .addstudent input:focus {
         outline: none;
         border: 2px solid #1a1111;
         box-shadow: 0 0 5px rgba(67, 35, 113, 0.5);
       }
-       .addstudent button{
+      .addstudent button {
         padding: 10px;
         background-color: #1a1111;
         color: white;
@@ -88,21 +88,26 @@
       }
     </style>
     <script>
-      async function saveStudent(){
-        event.preventDefault();
-        let rollno = document.getElementById('roll').value;
-        let name = document.getElementById('name').value;
-        let branch = document.getElementById('branch').value;
-        let cgpa = document.getElementById('cgpa').value;
+      async function saveStudent() {
+        // event.preventDefault();
+        let rollno = document.getElementById("roll").value;
+        let name = document.getElementById("name").value;
+        let branch = document.getElementById("branch").value;
+        let cgpa = document.getElementById("cgpa").value;
         const student = {
-          roll : rollno,
-          name : name,
-          branch : branch,
-          cgpa : cgpa
+          roll: rollno,
+          name: name,
+          branch: branch,
+          cgpa: cgpa,
         };
-        let stdnt = await fetch("http://localhost:3000/students",{method:"POST",body:JSON.stringify(student)});
-        // stdnt.then(res=>console.log(res));
-        location.href='viewstudents.html';
+        let stdnt = await fetch("http://localhost:4000/students", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(student),
+        });
+        location.href = "viewstudents.html";
       }
     </script>
   </head>

@@ -1,34 +1,49 @@
-const http = require('http')
-const fs = require('fs');
-const server = http.createServer((req,res)=>{
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    if (req.url == "/"){
-        res.write("Welcome to SMS home route");
-        res.end();
-    }
+const express = require("express");
+const fs = require("fs");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(express.json());
+const FILE_URL = "./db.json";
+function readFile() {
+    let data = fs.readFileSync(FILE_URL);
+    return JSON.parse(data);
+}
 
-    if (req.url == "/getStudents"){
-        fs.readFile("./db.json","utf8",(err,data)=>{
-            if (err){
-                res.write("<h1>Error in file reading</h1>");
-                return res.end();
-            }
-            res.write(data);
-            res.end();
-        })
-    }
-    if (req.url == "/login"){
-        fs.readFile("./db.json","utf8",(err,data)=>{
-            if (err){
-                res.write("Login error");
-                return res.end();
-            }
-            res.write(data);
-            res.end();
-        })
-    }
+function writeFile(data) {
+    fs.writeFileSync(FILE_URL, JSON.stringify(data, null, 2));
+}
+
+app.get("/students",(req,res)=>{
+    let data = readFile();
+    res.status(200).json(data);
+})
+app.post("/register", (req, res) => {
+    // console.log(req.body);
+
+    let data = readFile();
+    data.users.push(req.body);
+    writeFile(data);
+    res.status(200).json({
+        message: "Registration successful"
+    });
 });
 
-server.listen(4000,()=>{
-    console.log("Server started on port 4000");
+app.get("/login",(req,res)=>{
+    let data = readFile();
+    res.status(200).json(data);
 })
+
+app.post("/students",(req,res)=>{
+    let body = req.body;
+    // console.log(body);
+    let data = readFile();
+    data.students.push(body);
+    // console.log(data);
+    writeFile(data);
+    res.status(200).json({message : "Student added"});
+})
+
+app.listen(4000, () => {
+    console.log("Server started...");
+});
